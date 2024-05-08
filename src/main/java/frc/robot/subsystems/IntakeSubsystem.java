@@ -67,8 +67,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public void roll(double speed) {
         intakeFront.set(-speed);
         intakeBack.set(-speed);
-        intakeMiddle.set(speed);
-        System.out.println("Intake");
+        intakeMiddle.set(-speed*(.75));
 
     } 
 
@@ -76,7 +75,6 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeFront.set(0);
         intakeBack.set(0);
         intakeMiddle.set(0);
-        System.out.println("Stop Intake");
 
     //    System.out.println("STOP");
     }

@@ -1,5 +1,5 @@
 {
-  "robotWidth": 0.762,
+  "robotWidth": 0.76,
   "robotLength": 0.762,
   "holonomicMode": true,
   "pathFolders": [],
@@ -9,9 +9,9 @@
     "Sketchy",
     "AMP"
   ],
-  "defaultMaxVel": 5.0,
-  "defaultMaxAccel": 5.0,
+  "defaultMaxVel": 6.0,
+  "defaultMaxAccel": 6.0,
   "defaultMaxAngVel": 540.0,
   "defaultMaxAngAccel": 720.0,
-  "maxModuleSpeed": 5.0
+  "maxModuleSpeed": 6.0
 }

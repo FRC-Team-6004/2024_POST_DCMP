@@ -103,8 +103,8 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
             this::seedFieldRelative,  // Consumer for seeding pose against auto
             this::getCurrentRobotChassisSpeeds,
             (speeds)->this.setControl(autoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the robot
-            new HolonomicPathFollowerConfig(new PIDConstants(3, 0, 0.0),
-                                            new PIDConstants(3, 0, .0),
+            new HolonomicPathFollowerConfig(new PIDConstants(10, 0, 0.0),
+                                            new PIDConstants(10, 0, .0),
                                             TunerConstants.kSpeedAt12VoltsMps,
                                             driveBaseRadius,
                                             new ReplanningConfig()),
@@ -145,34 +145,6 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
             updateSimState(deltaTime, RobotController.getBatteryVoltage());
         });
         m_simNotifier.startPeriodic(kSimLoopPeriod);
-    }
-
-    public void driveLimit() {
-        CurrentLimitsConfigs currentLimits = new CurrentLimitsConfigs();
-        for (var swerveModule : Modules) {
-            TalonFX driveMotor = swerveModule.getDriveMotor();
-            driveMotor.getConfigurator().refresh(currentLimits);
-
-            currentLimits.SupplyCurrentLimit = 60;
-            currentLimits.SupplyCurrentThreshold = 80;
-            currentLimits.SupplyTimeThreshold = 0.5;
-            currentLimits.SupplyCurrentLimitEnable = true;
-            driveMotor.getConfigurator().apply(currentLimits);
-        }
-    }
-
-    public void azimuthLimit() {
-        CurrentLimitsConfigs currentLimits = new CurrentLimitsConfigs();
-        for (var swerveModule : Modules) {
-            TalonFX driveMotor = swerveModule.getSteerMotor();
-            driveMotor.getConfigurator().refresh(currentLimits);
-
-            currentLimits.SupplyCurrentLimit = 30;
-            currentLimits.SupplyCurrentThreshold = 40;
-            currentLimits.SupplyTimeThreshold = 0.25;
-            currentLimits.SupplyCurrentLimitEnable = true;
-            driveMotor.getConfigurator().apply(currentLimits);
-        }
     }
     
     public void ZeroGyro(){

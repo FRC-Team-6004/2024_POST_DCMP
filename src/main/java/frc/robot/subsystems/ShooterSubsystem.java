@@ -87,7 +87,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public void spinBump(double speed){
         bumpFalcon.set(-speed);
-        System.out.println("Spin Bump");
 
     }
 
@@ -109,9 +108,16 @@ public class ShooterSubsystem extends SubsystemBase {
     public void shootFlywheel(double speed) {
         bottomFalcon.set(speed);
         topFalcon.set(-speed);
-        System.out.println("Shoot");
     }
 
+        public void shootAuto(double speed) {
+        bottomFalcon.set(speed*.8);
+        topFalcon.set(-speed);
+    }
+    public void shootAmp(double speed) {
+        bottomFalcon.set(speed);
+        topFalcon.set(-speed*(.25));
+    }
     public void setMode(ShooterModes mode) {
         shooterModes = mode;
     }
@@ -123,8 +129,8 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public void stopFlywheel() {
-        bottomFalcon.set(.005);
-        topFalcon.set(.005);
+        bottomFalcon.set(-.05);
+        topFalcon.set(-.05);
         System.out.println("Stop Shoot");
     }
 
